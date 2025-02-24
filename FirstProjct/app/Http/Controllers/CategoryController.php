@@ -94,4 +94,15 @@ class CategoryController extends Controller
 
         return back();
     }
+
+    //Trash Mathod for soft delete
+    function trash_category(){
+
+        return view('backend.category.trash');
+
+        // $categories = Category::onlyTrashed()->get();
+        // return view('backend.category.trash_category', [
+        //     'categories' => $categories,
+        // ]);
+    }
 }

@@ -110,6 +110,12 @@
 
               </div>
           </li>
+          <li class="nav-item">
+            <a href="{{ route('trash.category') }}" class="nav-link">
+                <i class="link-icon fa-solid fa-trash"></i>
+              <span class="link-title">Trash</span>
+            </a>
+          </li>
 
 
 

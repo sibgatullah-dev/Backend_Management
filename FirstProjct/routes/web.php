@@ -52,5 +52,7 @@ Route::get('/delete/category/{id}', [CategoryController::class, 'delete_category
 Route::get('/edit/category/{id}', [CategoryController::class, 'edit_category'])->name('edit.category');
 Route::post('/update/category/{id}', [CategoryController::class, 'update_category'])->name('update.category');
 
+//Trash
+Route::get('/trash/category', [CategoryController::class, 'trash_category'])->name('trash.category');
 
 
