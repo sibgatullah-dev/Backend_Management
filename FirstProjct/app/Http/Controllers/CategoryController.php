@@ -86,9 +86,7 @@ class CategoryController extends Controller
 
 
     function delete_category($id){
-        $category = Category::find($id);
-        $delete_from = public_path('uploads/category/' .$category->category_image );
-        unlink($delete_from);
+
 
         Category::find($id)->delete();
 
@@ -97,12 +95,27 @@ class CategoryController extends Controller
 
     //Trash Mathod for soft delete
     function trash_category(){
+        $trashed = Category::onlyTrashed()->get();
 
-        return view('backend.category.trash');
+        return view('backend.category.trash', [
+            'trashed' => $trashed,
+        ]);
 
         // $categories = Category::onlyTrashed()->get();
         // return view('backend.category.trash_category', [
         //     'categories' => $categories,
         // ]);
+    }
+    function restore_category($id){
+        Category::onlyTrashed()->find($id)->restore();
+        return back();
+    }
+    function pdelete_category($id){
+        $category = Category::onlyTrashed()->find($id);
+        $delete_from = public_path('uploads/category/' .$category->category_image );
+        unlink($delete_from);
+
+        Category::onlyTrashed()->find($id)->forceDelete();
+        return back();
     }
 }

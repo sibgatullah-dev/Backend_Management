@@ -15,8 +15,9 @@ return new class extends Migration
             $table->id();
             $table->string('category_name')->unique();
             $table->string('category_image')->nullable();
+            // $table->date('deleted_at')->nullable();
+            $table->softDeletes();
             $table->string('slug')->unique();
-
             $table->timestamps();
         });
     }

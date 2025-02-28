@@ -4,7 +4,7 @@
 <div class="row">
     <div class="col-lg-8">
         <div class="card">
-            <div class="card-header">Category List</div>
+            <div class="card-header"><h3>Category List</h3></div>
             <div class="card-body">
                 <table class="table table-bordered">
                     <tr>
@@ -23,13 +23,21 @@
 
                             <td>{{ $category->slug }}</td>
                             <td class="text-center">
-                                <a href="{{ route('delete.category', $category->id) }}" class="btn btn-danger"><i class="fa-solid fa-trash-can"></i></a>
+                                <a href="{{ route('delete.category', $category->id) }}" class="btn trash-btn btn-danger"><i class="fa-solid fa-trash-can"></i></a>
                                 <a href="{{ route('edit.category', $category->id) }}" class="btn btn-info"><i class="fa-solid fa-pen"></i></a>
                             </td>
 
                         </tr>
                     @endforeach
                 </table>
+                <style>
+                    .trash-btn:hover {
+                        background-color: rgb(158, 12, 12);
+                        color: white;
+                        transition: 0.5s;
+                        border-color: rgb(158, 12, 12);
+                    }
+                </style>
             </div>
         </div>
     </div>

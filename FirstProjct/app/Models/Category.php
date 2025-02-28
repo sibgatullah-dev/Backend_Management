@@ -3,6 +3,7 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Category extends Model
 {
@@ -11,4 +12,5 @@ class Category extends Model
         'category_image',
         'slug',
     ];
+    use SoftDeletes;
 }
