@@ -50,27 +50,31 @@
 
 @section('script')
     <script>
-        let del = document.querySelector('.del')
-        del.onclick = function(){
-            Swal.fire({
-            title: "Are you sure?",
-            text: "You won't be able to revert this!",
-            icon: "warning",
-            showCancelButton: true,
-            confirmButtonColor: "#3085d6",
-            cancelButtonColor: "#d33",
-            confirmButtonText: "Yes, delete it!"
-        }).then((result) => {
-            if (result.isConfirmed) {
-                let link = $(this).dataset.link;
-            Swal.fire({
-                title: "Deleted!",
-                text: "Your file has been deleted.",
-                icon: "success"
-            });
-            }
-        });
-        }
+        let del = document.querySelectorAll('.del')
+        let delArr = Array.from(del)
+
+        delArr.map(item=>{
+            item.addEventListener('click', function(e){
+
+
+                let link = e.target.dataset.link;
+                Swal.fire({
+                    title: "Are you sure?",
+                    text: "You won't be able to revert this!",
+                    icon: "warning",
+                    showCancelButton: true,
+                    confirmButtonColor: "#3085d6",
+                    cancelButtonColor: "#d33",
+                    confirmButtonText: "Yes, delete it!"
+                }).then((result) => {
+                    if (result.isConfirmed) {
+                        // Perform the delete action using the link
+                        window.location.href = link;
+                    }
+                });
+            })
+        })
+
     </script>
 @endsection
 
