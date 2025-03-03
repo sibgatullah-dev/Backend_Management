@@ -25,15 +25,15 @@
 
                             <td>{{ $trash->slug }}</td>
                             <td class="text-center">
-                                <a href="{{ route('pdelete.category', $trash->id) }}" class="btn trash-btn btn-danger"><i class="fa-solid fa-trash-can"></i></a>
-                                <a href="{{ route('restore.category', $trash->id) }}" class="btn btn-success"><i class="fa-solid fa-recycle"></i></a>
+                                <a data-link="{{ route('pdelete.category', $trash->id) }}" class="btn del btn-danger"><i class="fa-solid fa-trash-can"></i></a>
+                                <a href="{{ route('restore.category', $trash->id) }}" class="btn btn-success "><i class="fa-solid fa-recycle"></i></a>
                             </td>
 
                         </tr>
                     @endforeach
                 </table>
                 <style>
-                    .trash-btn:hover {
+                    .del:hover {
                         background-color: rgb(158, 12, 12);
                         color: white;
                         transition: 0.5s;
@@ -46,3 +46,37 @@
 </div>
 
 @endsection
+
+
+@section('script')
+    <script>
+        let del = document.querySelector('.del')
+        del.onclick = function(){
+            Swal.fire({
+            title: "Are you sure?",
+            text: "You won't be able to revert this!",
+            icon: "warning",
+            showCancelButton: true,
+            confirmButtonColor: "#3085d6",
+            cancelButtonColor: "#d33",
+            confirmButtonText: "Yes, delete it!"
+        }).then((result) => {
+            if (result.isConfirmed) {
+                let link = $(this).dataset.link;
+            Swal.fire({
+                title: "Deleted!",
+                text: "Your file has been deleted.",
+                icon: "success"
+            });
+            }
+        });
+        }
+    </script>
+@endsection
+
+
+
+
+{{--  --}}
+
+

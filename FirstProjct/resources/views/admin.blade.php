@@ -674,6 +674,7 @@
 	<!-- end plugin js for this page -->
 	<!-- inject:js -->
 	<script src="{{asset('backend')}}/vendors/feather-icons/feather.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 	<script src="{{asset('backend')}}/js/template.js"></script>
     @yield('script')
 	<!-- endinject -->
