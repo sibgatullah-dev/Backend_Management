@@ -4,7 +4,7 @@
 <div class="row">
     <div class="col-lg-8">
         <div class="card">
-            <div class="card-header"><h3>Category List</h3></div>
+            <div class="card-header bg-primary text-white"><h3>Category List</h3></div>
             <div class="card-body">
                 <table class="table table-bordered">
                     <tr>
@@ -44,7 +44,47 @@
                 </style>
             </div>
         </div>
+
+        <div class="card mt-3">
+            <div class="card-header bg-primary rounded-md text-white"><h3>Sub Category List</h3></div>
+            <div class="card-body">
+                <div class="row">
+                    @foreach($categories as $category)
+
+                        <div class="col-md-6">
+                            <div class="card mb-2">
+                                    <div class="card-header d-flex justify-content-between">
+                                        <h5 class="card-title">{{ $category->category_name }}</h5>
+                                        <img width="40px" src="{{ asset('uploads/category') }}/{{ $category->category_image }}" alt="">
+                                    </div>
+
+                                <div class="card-body">
+                                   <table class="table table-bordered">
+                                        <tr>
+                                            <th>SL</th>
+                                            <th>SubCategory</th>
+                                            <th>Acton</th>
+                                        </tr>
+                                        @foreach ($category->rel_to_subcategory as $index=>$subcategory )
+                                        <tr>
+                                            <td>{{ $index+1 }}</td>
+                                            <td>{{ $subcategory->subcategory_name }}</td>
+                                            <td>
+                                                <a href="" class="btn btn-danger"><i class="fa-solid fa-trash-can"></i></a>
+                                            </td>
+                                        </tr>
+                                       @endforeach
+                                   </table>
+
+                                </div>
+                            </div>
+                        </div>
+                    @endforeach
+                </div>
+            </div>
+        </div>
     </div>
+
     <div class="col-lg-4">
         <div class="card">
             <div class="card-header bg-primary text-white">
@@ -89,7 +129,7 @@
                 @if(session('success'))
                     <div class="alert alert-success">{{ session('success') }}</div>
                 @endif
-              <form action=" " method="POST" >
+              <form action="{{ route('store.subcategory') }}" method="POST" >
                 @csrf
                 <div class="mb-3">
                     <label class="form-label ">Category</label>

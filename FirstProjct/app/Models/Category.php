@@ -13,4 +13,8 @@ class Category extends Model
         'slug',
     ];
     use SoftDeletes;
+
+    function rel_to_subcategory(){
+        return $this->hasMany(SubCategory::class, 'category_id', 'id');
+    }
 }

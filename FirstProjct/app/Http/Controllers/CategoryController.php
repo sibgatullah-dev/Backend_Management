@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Category;
+use App\Models\SubCategory;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Intervention\Image\ImageManager;
@@ -101,5 +102,15 @@ class CategoryController extends Controller
 
         $category->forceDelete();
         return back()->with('success', 'Category permanently deleted successfully');
+    }
+
+    // Sub Category
+    function store_subcategory(Request $request){
+        SubCategory::insert([
+            'category_id'=>$request->category,
+            'subcategory_name'=>$request->subcategory_name,
+            'created_at'=>Carbon::now(),
+        ]);
+        return back();
     }
 }
