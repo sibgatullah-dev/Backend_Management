@@ -16,7 +16,7 @@
                         <th>Slug</th>
                         <th>Action</th>
                     </tr>
-                    @foreach ($trashed as $index=>$trash)
+                    @forelse ($trashed as $index=>$trash)
                         <tr>
                             <td>{{ $index+1 }}</td>
                             <td>{{ $trash->category_name }}</td>
@@ -30,7 +30,11 @@
                             </td>
 
                         </tr>
-                    @endforeach
+                        @empty
+                        <tr>
+                            <td class="text-center" colspan="5">No Trash Found</td>
+                        </tr>
+                    @endforelse
                 </table>
                 <style>
                     .del:hover {
@@ -70,6 +74,11 @@
                     if (result.isConfirmed) {
                         // Perform the delete action using the link
                         window.location.href = link;
+                        Swal.fire({
+                            title: "Deleted!",
+                            text: "Category has been deleted.",
+                            icon: "success"
+                        });
                     }
                 });
             })
