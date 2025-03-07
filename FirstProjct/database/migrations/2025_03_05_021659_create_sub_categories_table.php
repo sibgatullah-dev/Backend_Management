@@ -13,7 +13,7 @@ return new class extends Migration
     {
         Schema::create('sub_categories', function (Blueprint $table) {
             $table->id();
-            $table->integer('category_id');
+            $table->foreignID('category_id')->constrained()->onDelete('cascade'); // when you do constrained then if the category id gets deleted then all the sub-category under that category will get deleted too . onDelete('cascade') means that the sub-category is connected with the category as child and parent . 
             $table->string('subcategory_name');
             $table->softDeletes();
             $table->timestamps();

@@ -45,14 +45,14 @@ class CategoryController extends Controller
         return back()->with('success', 'Category added successfully');
     }
 
-    function edit_category($id){
+    function edit_category($id){ // category edit request
         $category = Category::find($id);
         return view('backend.category.edit', [
             'category' => $category,
         ]);
     }
 
-    function update_category(Request $request, $id){
+    function update_category(Request $request, $id){ //Edited categroy update and insert request
         $category = Category::find($id);
         $delete_from = public_path('uploads/category/' . $category->category_image);
         if (file_exists($delete_from)) {
@@ -77,7 +77,7 @@ class CategoryController extends Controller
         return redirect()->route('add.category')->with('success', 'Category updated successfully');
     }
 
-    function delete_category($id){
+    function delete_category($id){ // Category deleting mathod
         Category::find($id)->delete();
         return back();
     }
@@ -95,7 +95,7 @@ class CategoryController extends Controller
         return back();
     }
 
-    function pdelete_category($id){
+    function pdelete_category($id){ //Permanent delete mathod from trash
         $category = Category::onlyTrashed()->find($id);
         $delete_from = public_path('uploads/category/' . $category->category_image);
         unlink($delete_from);
