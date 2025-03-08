@@ -100,8 +100,16 @@ class CategoryController extends Controller
         $delete_from = public_path('uploads/category/' . $category->category_image);
         unlink($delete_from);
 
+
+    //    $subcate =  SubCategory::where('category_id', $id)->get();
+
+    //    foreach($subcate as $sub){
+    //     echo $sub;
+    //    }
+
         $category->forceDelete();
-        return back()->with('success', 'Category permanently deleted successfully');
+        // Category::onlyTrashed()->find($id)->forceDelete();
+        return back()->with('del_success', 'Category deleted permanently! ');
     }
 
     // Sub Category
