@@ -25,7 +25,7 @@
 
                             <td>{{ $trash->slug }}</td>
                             <td class="text-center">
-                                <a herf="{{ route('pdelete.category', $trash->id) }}" class="btn del btn-danger"><i class="fa-solid fa-trash-can"></i></a>
+                                <a data-link="{{ route('pdelete.category', $trash->id) }}" class="btn del btn-danger"><i class="fa-solid fa-trash-can"></i></a>
                                 <a href="{{ route('restore.category', $trash->id) }}" class="btn btn-success "><i class="fa-solid fa-recycle"></i></a>
                             </td>
 
@@ -53,46 +53,47 @@
 
 
 
-// {{-- @section('script')
-//     <script>
-//         let del = document.querySelectorAll('.del')
-//         let delArr = Array.from(del)
+ @section('script')
+     <script>
+         let del = document.querySelectorAll('.del')
+         let delArr = Array.from(del)
 
-//         delArr.map(item=>{
-//             item.addEventListener('click', function(e){
-
-
-//                 let link = e.target.dataset.link;
-//                 Swal.fire({
-//                     title: "Are you sure?",
-//                     text: "You won't be able to revert this!",
-//                     icon: "warning",
-//                     showCancelButton: true,
-//                     confirmButtonColor: "#3085d6",
-//                     cancelButtonColor: "#d33",
-//                     confirmButtonText: "Yes, delete it!"
-//                 }).then((result) => {
-//                     if (result.isConfirmed) {
-//                         // Perform the delete action using the link
-//                         window.location.href = link;
-
-//                     }
-//                 });
-//             })
-//         })
+         delArr.map(item=>{
+             item.addEventListener('click', function(e){
 
 
-//     </script>
-//     @if(session('sel_success'))
-//         <script>
-//             Swal.fire({
-//                 title: "Deleted!",
-//                 text: "{{ session('sel_success') }}",
-//                 icon: "success"
-//             });
-//         </script>
-//     @endif
-// @endsection --}}
+                 let link = e.target.dataset.link;
+                 Swal.fire({
+                     title: "Are you sure?",
+                     text: "You won't be able to revert this!",
+                     icon: "warning",
+                     showCancelButton: true,
+                     confirmButtonColor: "#3085d6",
+                     cancelButtonColor: "#d33",
+                     confirmButtonText: "Yes, delete it!"
+                 }).then((result) => {
+                     if (result.isConfirmed) {
+                         // Perform the delete action using the link
+                         let link = this.dataset.link;
+
+                         window.location.href = link;
+
+                     }
+                 });
+             })
+         })
+    </script>
+
+@if(session('del_success'))
+    <script>
+        Swal.fire({
+            title: "Deleted!",
+            text: "{{ session('sel_success') }}",
+            icon: "success"
+        });
+    </script>
+@endif
+ @endsection
 
 
 

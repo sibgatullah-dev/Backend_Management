@@ -7,10 +7,8 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Category extends Model
 {
-    protected $fillable = [
-        'category_name',
-        'category_image',
-        'slug',
+    protected $gurded = [
+        'id',
     ];
     use SoftDeletes;
 
