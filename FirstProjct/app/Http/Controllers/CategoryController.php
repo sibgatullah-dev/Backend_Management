@@ -96,23 +96,22 @@ class CategoryController extends Controller
     }
 
     function pdelete_category($id){ //Permanent delete mathod from trash
+        // $category = Category::onlyTrashed()->find($id);
+        // $delete_from = public_path('uploads/category/' . $category->category_image);
+        // unlink($delete_from);
 
 
+       $subcate= SubCategory::where('category_id', $id)->get();
 
-        $category = Category::onlyTrashed()->find($id);
-        $delete_from = public_path('uploads/category/' . $category->category_image);
-        unlink($delete_from);
-
-
-    //    $subcate =  SubCategory::where('category_id', $id)->get();
-
-    //    foreach($subcate as $sub){
-    //     echo $sub;
-    //    }
+       foreach($subcate as $sub){
+         SubCategory::find($sub->id)->update([
+            'category_id'=>$id,
+         ]);
+       }
 
         // $category->forceDelete();
-        Category::onlyTrashed()->find($id)->forceDelete();
-        return back()->with('del_success', 'Category deleted permanently! ');
+        // Category::onlyTrashed()->find($id)->forceDelete();
+        // return back()->with('del_success', 'Category deleted permanently! ');
     }
 
     // Sub Category

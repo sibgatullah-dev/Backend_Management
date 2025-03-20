@@ -8,4 +8,5 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 class SubCategory extends Model
 {
     use SoftDeletes;
+    protected $guarded = ['id'];
 }
