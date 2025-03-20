@@ -78,8 +78,13 @@ class CategoryController extends Controller
     }
 
     function delete_category($id){ // Category deleting mathod
-        Category::find($id)->delete();
+        $category = Category::find($id);
+        if($category->category_name !='Uncategorized'){
+            Category::find($id)->delete();
+            return back();
+        }
         return back();
+
     }
 
     // Trash Method for soft delete
@@ -104,8 +109,9 @@ class CategoryController extends Controller
        $subcate= SubCategory::where('category_id', $id)->get();
 
        foreach($subcate as $sub){
-         SubCategory::find($sub->id)->update([
-            'category_id'=>$id,
+
+        SubCategory::find($sub->id)->update([
+            'category_id'=>7,
          ]);
        }
 
