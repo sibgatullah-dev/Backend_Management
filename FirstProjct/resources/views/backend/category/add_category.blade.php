@@ -70,6 +70,7 @@
                                             <td>{{ $index+1 }}</td>
                                             <td>{{ $subcategory->subcategory_name }}</td>
                                             <td>
+                                                <a href="{{ route('edit_subcategory'$subcategory->id) }}" class="btn btn-info text-white"><i class="fa-solid fa-pen"></i></a>
                                                 <a href="" class="btn btn-danger"><i class="fa-solid fa-trash-can"></i></a>
                                             </td>
                                         </tr>

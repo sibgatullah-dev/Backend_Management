@@ -56,6 +56,7 @@ Route::post('/update/category/{id}', [CategoryController::class, 'update_categor
 Route::get('/trash/category', [CategoryController::class, 'trash_category'])->name('trash.category');
 Route::get('/restore/category/{id}', [CategoryController::class, 'restore_category'])->name('restore.category');
 Route::get('/pdelete/category/{id}', [CategoryController::class, 'pdelete_category'])->name('pdelete.category');
+
+//Sub Category
 Route::post('/store/subcategory', [CategoryController::class, 'store_subcategory'])->name('store.subcategory');
-
-
+Route::get('/edit/subcategory{id}',[CategoryController::class, 'edit_subcategory'])->name('edit.subcategory');
