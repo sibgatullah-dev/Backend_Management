@@ -131,6 +131,19 @@ class CategoryController extends Controller
     }
 
     function edit_subcategory($id){
-        return view();
+        $categories = Category::all();
+        $subcategory= SubCategory::find($id);
+        return view('backend.category.edit_sub',[
+            'categories'=>$categories,
+            'subcategory'=>$subcategory,
+        ]);
+    }
+
+    function update_subcategory(Request $request,$id){
+        SubCategory::find($id)->update([
+            'category_id'=>$request->category,
+            'subcategory_name'=>$request->subcategory_name,
+        ]);
+        return redirect()->route('add.category');
     }
 }

@@ -70,7 +70,7 @@
                                             <td>{{ $index+1 }}</td>
                                             <td>{{ $subcategory->subcategory_name }}</td>
                                             <td>
-                                                <a href="{{ route('edit_subcategory'$subcategory->id) }}" class="btn btn-info text-white"><i class="fa-solid fa-pen"></i></a>
+                                                <a href="{{ route('edit.subcategory', $subcategory->id) }}" class="btn btn-info text-white"><i class="fa-solid fa-pen"></i></a>
                                                 <a href="" class="btn btn-danger"><i class="fa-solid fa-trash-can"></i></a>
                                             </td>
                                         </tr>
@@ -138,10 +138,11 @@
 
                     @foreach($categories as $category)
                         <option value="{{ $category->id }}">{{ $category->category_name }}</option>
-
                     @endforeach
+
                    </select>
                 </div>
+                
                 <div class="mb-3">
                     <label class="form-label ">Sub-Category Name</label>
                     <input type="text" name="subcategory_name" class="form-control" required>
